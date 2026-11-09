@@ -1,0 +1,12 @@
+[project]
+name = "job-skill-analyzer"
+version = "0.1.0"
+description = "A local Streamlit application for cleaning job CSV files and analyzing city-level skill demand"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "pandas==2.2.3",
+    "streamlit==1.55.0",
+]
+
+[tool.uv]
+package = false

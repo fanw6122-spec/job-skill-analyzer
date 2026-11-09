@@ -1,0 +1,38 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  unit-and-smoke:
+    name: Python 3.12 / ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+        with:
+          version: "0.13.7"
+
+      - name: Install locked dependencies
+        run: uv sync --locked --python 3.12
+
+      - name: Run 40 automated tests
+        run: uv run --no-sync python -m unittest discover -s tests -v
+
+      - name: Verify bundled CSV demonstration
+        run: uv run --no-sync python demo.py
+
+      - name: Check Streamlit script and local server
+        run: uv run --no-sync python smoke_test_streamlit.py

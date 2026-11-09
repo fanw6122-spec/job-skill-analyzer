@@ -1,0 +1,9 @@
+岗位编号,城市,岗位名称,技能
+001,成都, AI应用开发 ,Python;RAG
+002,深圳,Agent工程师,Python;Agent
+003,重庆,后端工程师,FastAPI
+004,,数据开发,Python
+005,成都,,RAG
+006, 深圳 ,后端工程师,Python
+007,   ,数据工程师,Python
+008,重庆,   ,Agent
