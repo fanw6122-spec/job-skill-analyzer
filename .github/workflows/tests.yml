@@ -32,7 +32,7 @@ jobs:
         run: uv run --no-sync python -m unittest discover -s tests -v
 
       - name: Verify bundled CSV demonstration
-        run: uv run --no-sync python demo.py
+        run: uv run --no-sync python -X utf8 demo.py
 
       - name: Check Streamlit script and local server
         run: uv run --no-sync python smoke_test_streamlit.py
